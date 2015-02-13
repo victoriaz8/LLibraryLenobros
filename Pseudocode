@@ -1,0 +1,50 @@
+General PseudoCode for Parsing Student Profiles
+
+Process to parse through correctly, semester by semester and not a line at a time
+•	Start at the first of student(indicated by the GWID)
+•	Store the index of the line started at
+•	Parse through the students text file, only taking the String from index 0 to 55 of each line
+•	When reached end of student's file(indicated by End of Document), 
+go back to the index of the line that the student's profile started on, 
+parsing through the string obtained from index 56 to end of line
+
+Finding GWID Number
+•	Once the string "GWid" is found, the String 9 indexes later is where 
+the G started in the GWID and so we can store everything from the indexes 
+of 9 after GWid to 17 after. When we find a GWid, we set a boolean = false 
+so that no GWid is captured after this to prevent from storing the same person 
+multiple times, so when "END OF DOCUMENT" is found, the boolean is then turned 
+to true and the program will continue to search for GWid's
+
+Name
+•	When found "Record of", 2 indexes after "of" will start the name, and 
+we set a string equal to the name until two spaces are found, indicating
+that the name is finished
+
+Writing and Skills Requirement
+•	If "skills requirement met" is found, parse for the class number
+afterwards indicated by the parantheses
+•	Store course numbers that are given on the text file in a variable, 
+so it can be checked at the end for completion. If variable is not empty, 
+then input "satisfied" in excel for that requirement
+
+Semesters
+•	If found "Fall" or "Summer" or "Spring", store the semester and then an
+indexes later take in the 4 index long year and put the two together, keep 
+searching the start of the following lines until a white space is not found,
+if the following 3 characters are not law, then pass over, else take in the
+Course number found 2 indexes later and if the four digit long number is equal
+to one of the numbers in the courses required list, then take the letter grade
+which is 34 digits letter and place it in the correct semester slot created in 
+the excel document, continue this search until "Ehrs" is found, which indicates 
+that the classes are done being listed, find the number after Ehrs and use it to
+calculate the Enrollment Units, which is stored into the semester class that is
+in turn stored into the student class
+
+Skills Requirement
+We could create a semester class that would be composed of enrollment credits,
+credit hours, and the specific semester; We could also create a Student class 
+that would be composed of GWid, student's name, an array of semesters that they 
+have been through, etc. At the end after all of the student objects are made, 
+we run through them to extract the information and place the corresponding info
+into the correct excel cell, could make functions to calculate the enrollments
