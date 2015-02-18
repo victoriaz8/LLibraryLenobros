@@ -18,7 +18,7 @@ to true and the program will continue to search for GWid's
 
 Name
 •	Chip said that the name is always within a certain number of indexes, so 
-we can just take out a string from 0 to whatever index is the maxium so we are
+we can just take out a string from 0 to whatever index is the maximum so we are
 always able to get people's name
 
 Writing and Skills Requirement
