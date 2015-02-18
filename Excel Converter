@@ -1,0 +1,48 @@
+//Not fully functional but getting there
+//Uses ExcelLibrary https://code.google.com/p/excellibrary/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ExcelLibrary.CompoundDocumentFormat;
+using ExcelLibrary.SpreadSheet;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+namespace Test
+{
+    class Program
+    {
+        private static string file = "newdoc.xls";
+        private static Workbook workbook = Workbook.Load(file);
+        private static Worksheet sheet = new Worksheet("student 1");
+        workbook.Worksheets.add(sheet);
+        private static Worksheet worksheet = workbook.Worksheets[0];
+        public static void Main(string[] args)
+        {
+            for (int x = 0; x < 100; x++) 
+            { 
+                worksheet.Cells[x, 0] = new Cell(""); 
+            } 
+            worksheet.Cells[0, 1] = new Cell((short)1);
+            worksheet.Cells[3, 3] = new Cell((decimal)3.45);
+            worksheet.Cells[4, 0] = new Cell(32764.5, "#,##0.00");
+            worksheet.Cells[5, 1] = new Cell(DateTime.Now, @"YYYY\-MM\-DD");
+            addCell(0, 0, "GWID");
+            addCell(0, 1, "On/Off Track");
+            addCell(0, 2, "Name");
+
+            worksheet.Cells.ColumnWidth[0, 1] = 3000;
+            workbook.Worksheets.Add(worksheet);
+            workbook.Save(file);
+
+            // open xls file
+           // Workbook book = Workbook.Load(file);
+            //Worksheet sheet = book.Worksheets[0];
+        }
+        private static void addCell(int row, int col, object value)
+        {
+            worksheet.Cells[row, col] = new Cell(value);
+        }
+    }
+}
