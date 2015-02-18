@@ -17,9 +17,9 @@ multiple times, so when "END OF DOCUMENT" is found, the boolean is then turned
 to true and the program will continue to search for GWid's
 
 Name
-•	When found "Record of", 2 indexes after "of" will start the name, and 
-we set a string equal to the name until two spaces are found, indicating
-that the name is finished
+•	Chip said that the name is always within a certain number of indexes, so 
+we can just take out a string from 0 to whatever index is the maxium so we are
+always able to get people's name
 
 Writing and Skills Requirement
 •	If "skills requirement met" is found, parse for the class number
